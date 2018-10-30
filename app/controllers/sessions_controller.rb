@@ -21,10 +21,6 @@ class SessionsController < ApplicationController
   end
 end
 
-
-  def destroy
-  end
-
 def login(email, password)
   @user = User.find_by(email: email)
     if @user && @user.authenticate(password)
@@ -35,5 +31,5 @@ def login(email, password)
       # ログイン失敗
       return false
     end
+   end
   end
-end
