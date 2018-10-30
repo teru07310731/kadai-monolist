@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'signup', to: 'users#new'
+  get 'rankings/want', to: 'rankings#want'
   resources :users, only: [:show, :new, :create]
-
   resources :items, only: [:show, :new]
   resources :ownerships, only: [:create, :destroy]
 end
