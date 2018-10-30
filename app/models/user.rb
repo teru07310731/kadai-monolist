@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :ownerships
   has_many :users, through: :ownerships
+  has_many :items, through: :ownerships
+  has_many :wants, through: :wants
+  has_many :want_items, through: :wants, class_name: 'Item', source: :item
 end
