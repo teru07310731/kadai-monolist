@@ -10,9 +10,11 @@ class User < ApplicationRecord
   has_many :items, through: :ownerships
   has_many :wants, through: :wants
   has_many :want_items, through: :wants, class_name: 'Item', source: :item
+  has_many :wants
+  has_many :want_users, through: :wants, class_name: 'User', source: :user
 
   def want(item)
-    self.wants.find_or_create_by(item_id: item_id)
+    self.wants.find_or_create_by(item_id: item.id)
   end
 
   def unwant(item)
