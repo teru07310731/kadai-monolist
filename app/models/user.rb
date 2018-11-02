@@ -25,3 +25,4 @@ class User < ApplicationRecord
   def want?(item)
     self.want_items.include?(item)
   end
+end

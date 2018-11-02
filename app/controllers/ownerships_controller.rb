@@ -6,7 +6,7 @@ class OwnershipsController < ApplicationController
       results = RakutenWebService::Ichiba::Item.search(itemCode: @item.Code)
 
 
-      @item =- Item.new(read(results.first))
+      @item = Item.new(read(results.first))
       @item.save
     end
 

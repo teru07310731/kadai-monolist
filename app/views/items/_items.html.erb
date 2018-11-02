@@ -12,13 +12,9 @@
                 </div>
                   <div class="panel-body">
                     <% if item.persisted? %>
-                      <p class="item-title">
-                        <%= link_to item.name, item %>
-                        </p>
+                      <p class="item-title"><%= link_to item.name, item %></p>
                         <% else %>
-                          <p class="item-title">
-                        <%= item.name %>
-                        </p>
+                          <p class="item-title"><%= item.name %></p>
                         <% end %>
                       <div class="buttons text-center">
                       <% if logged_in? %>
