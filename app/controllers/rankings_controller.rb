@@ -1,6 +1,6 @@
 class RankingsController < ApplicationController
   def want
-    @rankings_counts = Want.ranking
+    @ranking_counts = Want.ranking
     @items = Item.find(@ranking_counts.keys)
   end
 end
