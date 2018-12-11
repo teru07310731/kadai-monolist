@@ -25,4 +25,20 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @have_users = @item.have_users
   end
+
+  private
+  
+  def read(result)
+    code = result['itemCode']
+    name = result['itemName']
+    url = result['itemUrl']
+    image_url = result['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128X128','')
+    
+    {  
+      code: code,
+      name: name,
+      url: url,
+      image_url: image_url,
+    }
+  end
 end

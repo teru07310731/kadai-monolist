@@ -10,20 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181206042726) do
+ActiveRecord::Schema.define(version: 20181017054615) do
 
-  create_table "haves", force: :cascade do |t|
-    t.string   "type"
-    t.integer  "user_id"
-    t.integer  "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_haves_on_item_id"
-    t.index ["user_id", "item_id", "type"], name: "index_haves_on_user_id_and_item_id_and_type", unique: true
-    t.index ["user_id"], name: "index_haves_on_user_id"
-  end
-
-  create_table "items", force: :cascade do |t|
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "code"
     t.string   "name"
     t.string   "url"
@@ -32,18 +21,18 @@ ActiveRecord::Schema.define(version: 20181206042726) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ownerships", force: :cascade do |t|
+  create_table "ownerships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "type"
     t.integer  "user_id"
     t.integer  "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_ownerships_on_item_id"
-    t.index ["user_id", "item_id", "type"], name: "index_ownerships_on_user_id_and_item_id_and_type", unique: true
-    t.index ["user_id"], name: "index_ownerships_on_user_id"
+    t.index ["item_id"], name: "index_ownerships_on_item_id", using: :btree
+    t.index ["user_id", "item_id", "type"], name: "index_ownerships_on_user_id_and_item_id_and_type", unique: true, using: :btree
+    t.index ["user_id"], name: "index_ownerships_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
@@ -51,4 +40,6 @@ ActiveRecord::Schema.define(version: 20181206042726) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "ownerships", "items"
+  add_foreign_key "ownerships", "users"
 end

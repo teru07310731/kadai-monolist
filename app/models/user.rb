@@ -6,12 +6,11 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   has_many :ownerships
-  has_many :users, through: :ownerships
   has_many :items, through: :ownerships
-  has_many :wants, through: :wants
-  has_many :want_items, through: :wants, class_name: 'Item', source: :item
+
   has_many :wants
-  has_many :want_users, through: :wants, class_name: 'User', source: :user
+  has_many :want_items, through: :wants, class_name: 'Item', source: :item
+
   has_many :haves, class_name: 'Have'
   has_many :have_items, through: :haves, class_name: 'Item', source: :item
 
